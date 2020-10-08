@@ -1,0 +1,22 @@
+{% extends 'tasks/layout.html' %}
+{% load static %}
+
+{% block body %}
+<div class='row justify-content-center'>
+    <img src="{% static 'tasks/logo.png' %}" style='width:200px;height:200px'>
+</div>
+<div class='row justify-content-center'>
+    <div class='with-bg col-md-4 p-4 text-center form-group'>
+        <h1 class='my-4 display-4 font-weight-bold'>Register</h1>
+        <form action="{% url 'tasks:register' %}" method="POST">
+            {% csrf_token %}
+            <input class='mt-2 mb-2 form-control form-control-lg' type="text" name='username' placeholder="Username"><br>
+            <input class='mt-2 mb-2 form-control form-control-lg' type="text" name='email' placeholder="Email"><br>
+            <input class='mt-2 mb-2 form-control form-control-lg' type="password" name='password' placeholder="Password"><br>
+            <input class='mt-2 mb-2 form-control form-control-lg' type="password" name='confirm-password' placeholder="Confirm password"><br>
+            <input class='mt-2 mb-4 btn btn-primary btn-lg btn-block' type="submit" value='Submit'><br>
+        </form>
+        <p>Already have an Account? <a href="{% url 'tasks:login' %}">Sign in</a></p>
+    </div>
+</div>
+{% endblock %}

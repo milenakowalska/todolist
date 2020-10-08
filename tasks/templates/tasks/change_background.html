@@ -1,0 +1,57 @@
+{% extends 'tasks/layout.html' %}
+{% load static %}
+
+{% block body %}
+<section class='container'>
+    <div class='row'>
+        <div class='col-md-4 my-5 text-center'>
+                    <form action="{% url 'tasks:change_background' %}" method=POST>
+                        {% csrf_token %}
+                        <input type='hidden' name='color' value="linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);">
+                        <input type='submit' name='bg-color' class='border-dark rounded-circle' style="background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);width:300px;height:300px" value=''>
+                    </form>
+        </div>
+
+        <div class='col-md-4 my-5 text-center'>
+            <form action="{% url 'tasks:change_background' %}" method=POST>
+                {% csrf_token %}
+                <input type='hidden' name='color' value="linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);">
+                <input type='submit' name='bg-color' class='border-dark rounded-circle' style="background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);width:300px;height:300px" value=''>
+            </form>
+        </div>
+
+        <div class='col-md-4 my-5 text-center'>
+            <form action="{% url 'tasks:change_background' %}" method=POST>
+                {% csrf_token %}
+                <input type='hidden' name='color' value="linear-gradient(120deg, #f093fb 0%, #f5576c 100%);">
+                <input type='submit' name='bg-color' class='border-dark rounded-circle' style="background-image: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);width:300px;height:300px" value=''>
+            </form>
+        </div>
+
+        <div class='col-md-4 my-5 text-center'>
+            <form action="{% url 'tasks:change_background' %}" method=POST>
+                {% csrf_token %}
+                <input type='hidden' name='color' value="linear-gradient(to top, #30cfd0 0%, #330867 100%);">
+                <input type='submit' name='bg-color' class='border-dark rounded-circle' style="background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);width:300px;height:300px" value=''>
+            </form>
+        </div>
+
+        <div class='col-md-4 my-5 text-center'>
+            <form action="{% url 'tasks:change_background' %}" method=POST>
+                {% csrf_token %}
+                <input type='hidden' name='color' value="linear-gradient(to top, #0ba360 0%, #3cba92 100%);">
+                <input type='submit' name='bg-color' class='border-dark rounded-circle' style="background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);width:300px;height:300px" value=''>
+            </form>
+        </div>
+
+        <div class='col-md-4 my-5 text-center'>
+            <form action="{% url 'tasks:change_background' %}" method=POST>
+                {% csrf_token %}
+                <input type='hidden' name='color' value="linear-gradient(to top, #ff0844 0%, #ffb199 100%);">
+                <input type='submit' name='bg-color' class='border-dark rounded-circle' style="background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);width:300px;height:300px" value=''>
+            </form>
+        </div>
+
+    </div>
+</section>
+{% endblock %}
