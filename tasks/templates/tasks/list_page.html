@@ -35,14 +35,16 @@
                 {% for task in tasks %}
                     <div class='{% if task.done %}bg-light task{% else %}bg-dark task{% endif %} row my-2 py-2'>
                         <div class='col-md-4 text-left'><h4>{{ task.task_name }}</h4></div>
-                        <div class='col-md-3 text-left'>
+                        <div class='hours col-md-3 text-left'>
                         {{ task.time_start }} - {{ task.time_end}}
                         </div>
+
                         <div class='col-md-3 text-left'>
                             {% for i in task.importance|get_range %}
                             <i class="fas fa-star"></i>
                             {% endfor %}
                         </div> 
+
                         {% if task.done %}
                         <div class='col-md-2'>
                         <i class="fas fa-check-circle" style='color:rgb(43, 153, 49);font-size: 30px;'></i>
@@ -78,7 +80,7 @@
                     
                     <div class="form-group row">
                         <label for='importance' class="col-2 col-form-label">Importance: </label>
-                        <div class="col-10">
+                        <div class="col-10" id='importance'>
                             <div class="form-check form-check-inline">
                                 <input type='radio' class="form-check-input" name='importance' value=1>
                                 <label class="form-check-label" for="inlineRadio1">1</label>
