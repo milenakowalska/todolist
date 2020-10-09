@@ -5,8 +5,12 @@
 <div class='justify-content-center'>
     <div class='text-center form-group'>
     <div class='row justify-content-center'>
-        <div class='col-md-3'>
-            <h1 class='with-bg my-2 py-3'>{{ list.name }}</h1>
+
+        <div class='col-md-3'>   
+            <h1 class='with-bg my-2 py-3'>
+                <img src="{% static 'tasks/logo.png' %}" style='width:100px;height:100px'>
+                {{ list.name }}
+            </h1>
             <form action="{% url 'tasks:list_page' list.id %}" method=POST>
                 {% csrf_token %}
                 <input type='submit' name='archive-list' class='btn {% if list.archived %}btn-success{% else %}btn-dark{% endif %} btn-sm' value='{% if list.archived %}Reactivate this list!{% else %}Archive this list{% endif %}'>

@@ -8,6 +8,7 @@
             <div class='col-md-4 my-5 text-center'>
             <a href = "{% url 'tasks:list_page' list.id %}">
                 <div class='with-shadow mx-4 p-5'>
+                <img src="{% static 'tasks/logo.png' %}" style='width:100px;height:100px'>
                 <h4 class='font-weight-bold'>{{ list.name }}</h4>
                 <p>Created on: <span>{{ list.date_created }}</span></p>
                 </div>

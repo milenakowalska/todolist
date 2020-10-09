@@ -6,5 +6,19 @@
     <div class='text-center form-group'>
     <img id='logo' src="{% static 'tasks/logo.png' %}">
     </div>
+    <div class='row justify-content-center text-center'>
+        {% if user.is_authenticated %}
+        <div class='col-md-3'>
+            <a href="{% url 'tasks:logout' %}"><button class='btn btn-dark btn-lg' style='font-size:50px;height:120px;width:300px'>Log out</button></a>
+        </div>
+        {% else %}
+        <div class='col-md-3'>
+            <a href="{% url 'tasks:login' %}"><button class='btn btn-dark btn-lg' style='font-size:50px;height:120px;width:300px'>Sign in</button></a>
+        </div>
+        <div class='col-md-3'>
+            <a href="{% url 'tasks:register' %}"><button class='btn btn-dark btn-lg' style='font-size:50px;height:120px;width:300px'>Get started</button></a>
+        </div>
+        {% endif %}
     </div>
+</div>
 {% endblock %}
