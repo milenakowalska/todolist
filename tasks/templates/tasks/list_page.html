@@ -20,7 +20,18 @@
     <div class='row'>
         <div class='col-md-6'>
             <div class='with-bg m-3 p-5'>
-                <h2>Tasks</h2>
+                <div class='row justify-content-end'>
+                    <div class='col-md-10'>
+                        <h2>Tasks</h2>
+                    </div>
+                    <div class='col-md-2'>
+                        <form action="{% url 'tasks:list_page' list.id %}" method=POST>
+                            {% csrf_token %}
+                            <input type='submit' name='restart' class='btn btn-primary' value=Restart>
+                        </form>
+                    </div>
+                </div>
+
                 {% for task in tasks %}
                     <div class='{% if task.done %}bg-light task{% else %}bg-dark task{% endif %} row my-2 py-2'>
                         <div class='col-md-4 text-left'><h4>{{ task.task_name }}</h4></div>
@@ -32,23 +43,34 @@
                             <i class="fas fa-star"></i>
                             {% endfor %}
                         </div> 
-                        <div class='col-md-2'>
                         {% if task.done %}
+                        <div class='col-md-2'>
                         <i class="fas fa-check-circle" style='color:rgb(43, 153, 49);font-size: 30px;'></i>
+                        </div>
                         {% else %}
+                        <div class='col-md-1'>
                             <form action="{% url 'tasks:list_page' list.id %}" method=POST>
                                 {% csrf_token %}
                                 <input type='hidden' name='task-done' value="{{ task.id }}">
-                                <input type='submit' name='done-task' class='btn btn-primary' value='Task done'>
+                                <button type='submit' name='done-task' class='btn' style='background-color: rgba(240, 248, 255, 0);'><i class="icon-button fas fa-check" ></i>
+                                </button>
                             </form>
-                        {% endif %}
                         </div>
+                        <div class='col-md-1'>
+                            <form action="{% url 'tasks:list_page' list.id %}" method=POST>
+                                {% csrf_token %}
+                                <input type='hidden' name='task-delete' value="{{ task.id }}">
+                                <button type='submit' name='delete-task' class='btn' style='background-color: rgba(240, 248, 255, 0);'><i class="icon-button fas fa-trash-alt" ></i>
+                                </button>
+                            </form>
+                        </div>
+                        {% endif %}
                     </div>
                 {% endfor %}
             </div>
         </div>
         <div class='col-md-6'>
-            <div class='with-bg m-3 p-5'>
+            <div class='with-bg m-3 p-5' {% if list.archived %}style='opacity:0.2'{% endif %}>
                 <h2>Add new task</h2>
                 <form action="{% url 'tasks:list_page' list.id %}" method=POST>
                     {% csrf_token %}
@@ -93,7 +115,7 @@
                             <input class='mt-2 mb-2 form-control form-control-lg' type="time" name='time-end' placeholder="Time end"><br>
                         </div>
                     </div>
-                    <input class='mt-2 mb-4 btn btn-primary btn-lg btn-block' type="submit" name='add-task' value='Submit'><br>
+                    <input class='mt-2 mb-4 btn btn-primary btn-lg btn-block' {% if list.archived %}disabled{% endif %} type="submit" name='add-task' value='Submit'><br>
                 </form>
             </div>
         </div>

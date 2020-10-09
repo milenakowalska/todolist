@@ -111,11 +111,53 @@ def list_page(request, list_id):
                     'tasks':current_list.tasks.all()
                 }
                 return render(request, 'tasks/list_page.html', context)
+
+        if 'delete-task' in request.POST:
+            task_id = request.POST['task-delete']
+            try:
+                Task.objects.get(pk=int(task_id)).delete()
+
+                current_list = ToDoList.objects.get(pk=list_id)
+                context = {
+                    'success_message':f'Task deleted!',
+                    'list': current_list,
+                    'tasks':current_list.tasks.all()
+                }
+                return render(request, 'tasks/list_page.html', context)
+            except:
+                current_list = ToDoList.objects.get(pk=list_id)
+                context = {
+                    'error_message':f'There was an issue, {task_name}',
+                    'list': current_list,
+                    'tasks':current_list.tasks.all()
+                }
+                return render(request, 'tasks/list_page.html', context)
+
+        if 'restart' in request.POST:
+            to_do_list = ToDoList.objects.get(pk=list_id)
+
+            for task in to_do_list.tasks.all():
+                task.done = False
+                task.save()
+
+
+            current_list = ToDoList.objects.get(pk=list_id)
+            context = {
+                    'success_message':f'List status changed!',
+                    'list': current_list,
+                    'tasks':current_list.tasks.all()
+            }
+            return render(request, 'tasks/list_page.html', context)
             
+
         if 'archive-list' in request.POST:
             to_do_list = ToDoList.objects.get(pk=list_id)
             if to_do_list.archived == True:
                 to_do_list.archived = False
+
+                for task in to_do_list.tasks.all():
+                    task.done = False
+                    task.save()
             else:
                 to_do_list.archived = True
             to_do_list.save()
