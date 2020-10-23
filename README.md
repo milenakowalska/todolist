@@ -28,7 +28,7 @@ You can archive lists and reactivate them, if you need to use them one more time
 ### Clone the source:
 
 ```shell
-$ git https://github.com/milenakowalska/todolist
+$ git clone https://github.com/milenakowalska/todolist
 $ cd todolist
 ```
 ### Install packages
